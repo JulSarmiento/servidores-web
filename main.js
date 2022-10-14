@@ -1,26 +1,15 @@
-const Container = require("./classes/container.class");
+const express = require('express');
+const app = express();
+require('dotenv').config();
 
-const db = "products";
+const routes = require('./routers');
 
-const product = new Container(db);
+app.use(routes);
 
-const productExample = {
-    title: 'Collar Elegant',
-    price: 152000,
-    thumbnail: 'https://firebasestorage.googleapis.com/v0/b/mazu-store.appspot.com/o/products%2Fcollar-elegant%2Fcollar-elegant-ambar-back.jpg?alt=media&token=8985f23e-b5f3-4a34-a388-cef4ed8abb4d'
-};
+const PATH = process.env.PORT || 8080;
 
-// product.getAll()
-//     .then(console.log);
+const server = app.listen(PATH, () => {
+    console.log(`Servidor corriendo en la ruta: ${PATH}`);
+})
 
-product.saveProduct(productExample)
-    .then(console.log);
-
-// product.getbyId(2)
-//     .then(console.log);
-
-// product.deleteById(2)
-//     .then(console.log("Elemento eliminado"));
-
-// product.deleteAll()
-//     .then(console.log("Todos los productos fueron eliminados"));
+server.on('error', error => console.error(error));

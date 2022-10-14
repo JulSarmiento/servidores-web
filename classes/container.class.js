@@ -27,6 +27,18 @@ class Container {
 
   /**
    * 
+   * @returns object
+   */
+  async getRandom() {
+    const array = await readFiles(this.filename);
+
+    const random = Math.round(Math.random() * array.length);
+
+    return this.getbyId(random);
+  }
+
+  /**
+   * 
    * @param {num} productId 
    * @returns object
    */
