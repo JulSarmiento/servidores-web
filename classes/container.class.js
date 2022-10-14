@@ -7,10 +7,7 @@ class Container {
     this.filename = `db/${filename}.txt`;
   }
 
-  /**
-   * Retorna ID
-   * @param {object} product 
-   */
+
   async saveProduct(product){
     const array = await this.getAll();
     product.id = array.length > 0 ? array[array.length -1].id + 1 : 1;
@@ -25,10 +22,7 @@ class Container {
     }
   };
 
-  /**
-   * 
-   * @returns object
-   */
+
   async getRandom() {
     const array = await readFiles(this.filename);
 
@@ -37,11 +31,7 @@ class Container {
     return this.getbyId(random);
   }
 
-  /**
-   * 
-   * @param {num} productId 
-   * @returns object
-   */
+
   async getbyId(productId){
     
     try{
@@ -54,10 +44,7 @@ class Container {
 
   };
 
-  /**
-   * 
-   * @returns array
-   */
+
   async getAll(){
     try{
       return await readFiles(this.filename);
@@ -68,10 +55,7 @@ class Container {
     
   };
 
-  /**
-   * no return
-   * @param {number} productId 
-   */
+
   async deleteById(productId){
     try{
       const array = await readFiles(this.filename);
@@ -83,9 +67,7 @@ class Container {
 
   };
 
-  /**
-   * No return
-   */
+
   async deleteAll(){
     try {
       const data = await fs.promises.writeFile(this.filename, "");
